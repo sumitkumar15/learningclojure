@@ -1,4 +1,5 @@
-(ns .chapter4)
+(ns .chapter4
+  (:import (clojure.lang PersistentTreeMap$Black)))
 (def human-consumption   [8.1 7.3 6.6 5.0])
 (def critter-consumption [0.0 0.2 0.3 1.1])
 (defn unify-diet-data
@@ -66,4 +67,7 @@
   )
 
 (def odd (my-complement _even))
+
 (println (odd 5))
+
+;Final Example
