@@ -1,20 +1,22 @@
-(ns .chapter4
-  (:import (clojure.lang PersistentTreeMap$Black)))
+(ns .chapter4)
 (def human-consumption   [8.1 7.3 6.6 5.0])
 (def critter-consumption [0.0 0.2 0.3 1.1])
 (defn unify-diet-data
   [human critter]
   {:human human
    :critter critter})
+
 (def vamp-data (map unify-diet-data human-consumption critter-consumption))
+
 (println vamp-data)
+
 (map unify-diet-data human-consumption critter-consumption)
 
 (def mymap {:max 10 :min 5})
 
-(def update-map (fn
-                  [mmap [key value]]
-                  (assoc mmap key (inc value)))
+(def update-map
+  (fn [mmap [key value]]
+    (assoc mmap key (inc value)))
   )
 
 (println (reduce update-map {} mymap))
@@ -42,7 +44,9 @@
 
 (println (filter #(<= (:human %) 5) food-journal))
 
-(println (some #(= (:critter %) 2.9) food-journal))         ; if any predicate evaluates to true
+(println (some #(= (:critter %) 2.3) food-journal))  ; if any predicate evaluates to true
+
+
 
 (defn conjj
   [target & resr]
@@ -55,19 +59,32 @@
 (println (conjj [1] [4]))
 (println (my-into [1] [4 6]))
 
-(defn logger [log-level log-message]
-  (partial log-level))
 
-(def _even (fn [n](= (mod n 2) 0)))
+(def _even
+  (fn [n]
+    (= (mod n 2) 0)
+    )
+  )
 
-(defn my-complement [fun] (fn
-                            [args]
-                     (not (fun args))
-                     )
+(defn my-complement [fun]
+  (fn [args]
+    (not (fun args))
+    )
   )
 
 (def odd (my-complement _even))
 
 (println (odd 5))
 
-;Final Example
+(
+  let [
+       n_t (read-line)
+       n (Integer/parseInt n_t)
+       ]
+  (println (loop [x n (bigint buff) 1]
+             (if (= x 0) buff
+                         (recur (dec x) (* buff x))
+                         )
+             ))
+
+  )
