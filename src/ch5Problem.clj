@@ -33,3 +33,19 @@
   )
 
 ;Problem 3
+(defn my-assoc-in [dest [k & ks] target]
+  (if (= ks nil)
+    (assoc dest k target)
+    (assoc dest k (my-assoc-in (k dest) ks target))
+    )
+  )
+(println (my-assoc-in character [:attributes :speed] 99))
+
+;Problem 4 & 5
+(defn my-update-in [dest [k & ks] func value]
+  (if (= ks nil)
+    (assoc dest k (func (get dest k) value))
+    (assoc dest k (my-update-in (k dest) ks func value))
+    )
+  )
+(println (my-update-in character [:attributes :strength] + 4))
