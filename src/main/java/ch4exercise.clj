@@ -4,7 +4,7 @@
 
 (defn str->int
   [str]
-  (Integer. str))
+  (Integer/parseInt str))
 
 (def conversion {:name identity
                  :glitter-index str->int})
